@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Code Redeemer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f7f7f7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem 1.5rem 2.5rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      text-align: center;
+      width: 100%;
+      max-width: 370px;
+      margin: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .important-message {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+      padding: 1rem 1rem 1rem 1rem;
+      margin-bottom: 2rem;
+      font-size: 1.08rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #codeDisplay {
+      margin: 2rem 0 1.2rem 0;
+      font-size: 1.7rem;
+      color: #333;
+      min-height: 2.5rem;
+      letter-spacing: 2px;
+      word-break: break-all;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    #redeemBtn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      width: 100%;
+      max-width: 260px;
+    }
+    #redeemBtn:active {
+      background: #0056b3;
+      transform: scale(0.97);
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        max-width: 98vw;
+      }
+      #codeDisplay {
+        font-size: 1.2rem;
+      }
+      #redeemBtn {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+      .important-message {
+        font-size: 0.98rem;
+        padding: 0.7rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="important-message">
+      🚨 <span>Remember: every time you visualize the code it will be deleted from our server!</span> 🚨
+    </div>
+    <div id="codeDisplay"></div>
+    <button id="redeemBtn">VISUALIZE CODE</button>
+  </div>
+  <script>
+    // Your codes, extracted from your list (removing empty/invalid lines)
+    const codes = [
+      "zsdy-6l5l",
+      "zuua-uqxn", 
+      "q9ct-xyft",
+      "qawy-gfhs"
+    ];
+
+    let availableCodes = [...codes];
+
+    const codeDisplay = document.getElementById('codeDisplay');
+    const redeemBtn = document.getElementById('redeemBtn');
+
+    redeemBtn.addEventListener('click', () => {
+      if (availableCodes.length === 0) {
+        codeDisplay.textContent = "SORRY, ALL CODES REDEEMED <3";
+        redeemBtn.disabled = true;
+        redeemBtn.style.background = "#aaa";
+        return;
+      }
+      const idx = Math.floor(Math.random() * availableCodes.length);
+      const code = availableCodes[idx];
+      availableCodes.splice(idx, 1);
+      codeDisplay.textContent = code;
+      if (availableCodes.length === 0) {
+        redeemBtn.textContent = "NO MORE CODES";
+      }
+    });
+  </script>
+</body>
+</html>
